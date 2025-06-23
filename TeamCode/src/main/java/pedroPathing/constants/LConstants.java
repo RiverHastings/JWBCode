@@ -5,17 +5,16 @@ import com.pedropathing.localization.constants.*;
 
 public class LConstants {
     static {
-        DriveEncoderConstants.forwardTicksToInches = 1;
-        DriveEncoderConstants.strafeTicksToInches = 1;
-        DriveEncoderConstants.turnTicksToInches = 1;
-        
-        DriveEncoderConstants.robot_Width = 1;
-        DriveEncoderConstants.robot_Length = 1;
-        
-        DriveEncoderConstants.leftFrontEncoderDirection = Encoder.REVERSE;
-        DriveEncoderConstants.rightFrontEncoderDirection = Encoder.FORWARD;
-        DriveEncoderConstants.leftRearEncoderDirection = Encoder.REVERSE;
-        DriveEncoderConstants.rightRearEncoderDirection = Encoder.FORWARD;
+        TwoWheelConstants.forwardTicksToInches = .001989436789;
+        TwoWheelConstants.strafeTicksToInches = .001989436789;
+        TwoWheelConstants.forwardY = 1;
+        TwoWheelConstants.strafeX = -2.5;
+        TwoWheelConstants.forwardEncoder_HardwareMapName = "leftFront";
+        TwoWheelConstants.strafeEncoder_HardwareMapName = "rightRear";
+        TwoWheelConstants.forwardEncoderDirection = Encoder.REVERSE;
+        TwoWheelConstants.strafeEncoderDirection = Encoder.FORWARD;
+        TwoWheelConstants.IMU_HardwareMapName = "imu";
+        TwoWheelConstants.IMU_Orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.UP, RevHubOrientationOnRobot.UsbFacingDirection.LEFT);
     }
 }
 
