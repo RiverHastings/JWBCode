@@ -12,20 +12,24 @@ import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
 
 // Level 1.1: Straight Line
-private final startPose = new Pose(0, 0, Math.toRadians(0));
-private final endPose = new Pose(30, 0, Math.toRadians(0));
+private final Pose startPose = new Pose(0, 0, Math.toRadians(0));
+private final Pose endPose = new Pose(30, 0, Math.toRadians(0));
+private int pathState = 0;
+private Timer pathTimer;
 
 private Path forwardLine;
 
 public void buildPaths(){
   forwardLine = new Path(new BezierLine(new Point(startPose), new Point(endPose))); 
   forwardLine.setLinearHeadingInterpolation(startPose.getHeading(), endPose.getHeading());
+
+  autoChain = new PathChain().addPath(forwardLine);
 }
 
 public void autonomousPathUpdate() {
     switch (pathState) {
         case 0:
-            follower.followPath(forwardLine);
+            follower.followPath(autoChain);
             break;
     }
 }
@@ -37,6 +41,7 @@ public void setPathState(int pState) {
 
 @Override
 public void init() {
+    telemetry.setAutoClear(false);
     pathTimer = new Timer();
     Constants.setConstants(FConstants.class, LConstants.class);
     follower = new Follower(hardwareMap);
